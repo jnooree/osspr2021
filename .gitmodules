@@ -1,0 +1,6 @@
+[submodule "projects/PJ0"]
+	path = projects/PJ0
+	url = git@github.com:swsnu/project-0-hello-system-call-jnooree
+[submodule "projects/PJ1"]
+	path = projects/PJ1
+	url = git@github.com:swsnu/project1-hello-process-jnooree
