@@ -4,3 +4,6 @@
 [submodule "projects/PJ1"]
 	path = projects/PJ1
 	url = git@github.com:swsnu/project1-hello-process-jnooree
+[submodule "projects/PJ2"]
+	path = projects/PJ2
+	url = git@github.com:jnooree/project2-hello-synchronization-team-1
