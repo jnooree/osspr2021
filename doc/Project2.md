@@ -1,7 +1,7 @@
 # Project 2: Hello, Synchronization!
 
 * Assigned: 2021-03-23 Tuesday 17:00:00 KST
-* Design Review Due: 2021-04-02 Friday
+* Design Review Due: 2021-04-05 Monday
 * **Due: 2021-04-12 Monday 20:59:59 KST**
 
 
@@ -160,7 +160,7 @@ long rotation_unlock(long id);
 ```
 
 A process can revoke its own access rights by calling `rotation_unlock` with the ID returned by the call to `rotation_lock`.
-Unlike `rotation_lock`, processes may revoke their access rights any time regardless of the device's current orientation, and thus the call to `rotation_unlock` will be never blocked.
+Unlike `rotation_lock`, processes may revoke their access rights any time regardless of the device's current orientation, and thus the call to `rotation_unlock` will never block.
 Also, a process may only revoke access rights that it owns.
 If a process calls `rotation_unlock` with an ID that it does not own, the system call should abort and return `-EPERM`.
 
@@ -233,11 +233,11 @@ For example, it might be a good idea to keep a list of access requests and imple
 
 There are many different ways to block processes.
 You can use mutexes (`linux/mutex.h`) or semaphores (`linux/semaphore.h`).
-If you are brave enough, you can choose to work at the level of wait queues using either the associated low-level routines such as add_wait_queue(), remove_wait_queue(), or the higher-level routines such as prepare_to_wait(), finish_wait().
+If you are brave enough, you can choose to work at the level of wait queues using either the associated low-level routines such as `add_wait_queue()`, `remove_wait_queue()`, or the higher-level routines such as `prepare_to_wait()`, `finish_wait()`.
 You can find code examples both in the book (pages 58 - 61 of Linux Kernel Development) and in the kernel.
 
 Finally, but most importantly, make sure to correctly synchronize accesses to your internal data structures.
-Remember, we're working on a multiprocessor machine, and races will always happen.
+Remember, we're working on a multicore machine, and races will always happen.
 
 
 ## Test your rotation lock implementation (10 pts.)
@@ -289,6 +289,9 @@ Your screen should look like the following:
   student-10-50: 7494 = 2 * 3 * 1249
   ...
   ```
+
+Here, you should understand that the `professor` and `student`s agree to synchronize their access to `quiz`, the protected object, with the rotation range [0, 180].
+This should be perceived as an **agreement** between `professor` and `student`s, just as if how threads agree to first `acquire` a shared mutex before executing the critical section and `release` it when they're done.
 
 We recommend that you use `tmux` to run these test binaries.
 Refer to [this issue](https://github.com/swsnu/osspr2021/issues/29) for instructions on how to install `tmux`.
