@@ -10,3 +10,6 @@
 [submodule "projects/PJ3"]
 	path = projects/PJ3
 	url = git@github.com:jnooree/project3-hello-scheduler-team-1
+[submodule "projects/PJ4"]
+	path = projects/PJ4
+	url = git@github.com:swsnu/project3-hello-file-system-team-1
